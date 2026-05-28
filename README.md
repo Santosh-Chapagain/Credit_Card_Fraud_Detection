@@ -1,6 +1,6 @@
 # Credit Card Fraud Detection
 
-This project explores credit card fraud detection using a real-world transaction dataset and several supervised machine learning models. The analysis is implemented in [analysis.ipynb](analysis.ipynb) and the trained model artifact is saved as [fraud_model.joblib](fraud_model.joblib).
+This project explores credit card fraud detection using a real-world transaction dataset and several supervised machine learning models. The analysis is implemented in [analysis.ipynb](analysis.ipynb) and the trained model artifact is saved as [fraud_model.joblib](https://huggingface.co/Santosh-Chapagain/fraud-card-model).
 
 ## Overview
 
@@ -14,7 +14,7 @@ Credit card fraud detection is a highly imbalanced classification problem, where
 
 ## Dataset
 
-The project uses [creditcard.csv](creditcard.csv), which contains transaction features and a binary target column indicating whether a transaction is fraudulent.
+The project uses [creditcard.csv] (https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud), which contains transaction features and a binary target column indicating whether a transaction is fraudulent.
 
 ## Models Used
 
