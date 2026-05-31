@@ -2,6 +2,8 @@
 
 This project explores credit card fraud detection using a real-world transaction dataset and several supervised machine learning models. The analysis is implemented in [analysis.ipynb](analysis.ipynb) and the trained model artifact is saved as [fraud_model.joblib](https://huggingface.co/Santosh-Chapagain/fraud-card-model).
 
+In addition to local model development, this project was operationalized on Azure Machine Learning by building an end-to-end ML pipeline and publishing a REST endpoint for real-time HTTP inference requests.
+
 ## Overview
 
 Credit card fraud detection is a highly imbalanced classification problem, where fraudulent transactions are rare compared with legitimate ones. This notebook-based project covers:
@@ -11,10 +13,11 @@ Credit card fraud detection is a highly imbalanced classification problem, where
 - handling class imbalance with resampling techniques
 - training and comparing multiple models
 - saving a trained model for later reuse
+- deploying the trained workflow through an Azure ML pipeline and exposing it as a REST API endpoint
 
 ## Dataset
 
-The project uses [creditcard.csv] (https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud), which contains transaction features and a binary target column indicating whether a transaction is fraudulent.
+The project uses [creditcard.csv](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud), which contains transaction features and a binary target column indicating whether a transaction is fraudulent.
 
 ## Models Used
 
@@ -67,6 +70,29 @@ predictions = model.predict(X_new)
 ```
 
 If the training notebook applied scaling or resampling, apply the same preprocessing pipeline before prediction.
+
+## Azure ML Pipeline and REST Deployment
+
+This project also includes a production-style deployment workflow in Azure:
+
+- Built and validated an Azure Machine Learning pipeline for data preparation, model training, and model registration.
+- Deployed the trained model as a managed online endpoint.
+- Successfully published a REST API that accepts HTTP requests and returns fraud prediction responses.
+
+Example request flow:
+
+1. Prepare a JSON payload with transaction feature values.
+2. Send an authenticated HTTP POST request to the Azure endpoint URI.
+3. Receive prediction output (fraud or non-fraud) from the endpoint response.
+
+Example (conceptual) HTTP request:
+
+```bash
+curl -X POST "<azure-endpoint-uri>" \
+	-H "Content-Type: application/json" \
+	-H "Authorization: Bearer <access-token-or-key>" \
+	-d '{"input_data": [{"Time": 0.0, "V1": -1.36, "V2": -0.07, "Amount": 149.62}]}'
+```
 
 ## Notes
 
